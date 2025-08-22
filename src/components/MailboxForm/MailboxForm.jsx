@@ -7,6 +7,8 @@ const MailboxForm = ({ addBox }) => {
     boxSize: "Small",
   });
 
+  const navigate = useNavigate();
+  
   const boxSize = {
     Small: "Small",
     Medium: "Medium",
@@ -14,13 +16,14 @@ const MailboxForm = ({ addBox }) => {
   };
 
   const handleChange = ({ target }) => {
-    setFormData({ ...formData, [target.boxholder]: target.value });
+    setFormData({ ...formData, [target.name]: target.value });
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     addBox(formData);
     setFormData({ boxOwner: "", boxSize: "Small" });
+    navigate('/mailboxes');
   };
 
   return (
@@ -28,17 +31,20 @@ const MailboxForm = ({ addBox }) => {
       <h2>New Mailbox</h2>
       <form onSubmit={handleSubmit}>
         {/* Boxholder Name */}
-        <label htmlFor="boxholder">Enter a Boxholder:</label>
+        <label htmlFor="boxOwner">Enter a Boxholder:</label>
         <input
           type="text"
-          id="boxholder"
-          name="boxholder"
+          id="boxOwner"
+          name="boxOwner"
           value={formData.boxOwner}
           onChange={handleChange}
           required
         />
         <label htmlFor="boxSize">Select a Box Size:</label>
-        <select>
+        <select
+        name="boxSize"
+        value={formData.boxSize}
+        onChange={handleChange}>
           {Object.entries(boxSize).map(([key, value]) => (
             <option key={key} value={key}>
               {value}
