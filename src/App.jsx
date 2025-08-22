@@ -4,10 +4,10 @@ import MailboxList from "./components/MailboxList/MailboxList";
 import MailboxDetails from "./components/MailboxDetails/MailboxDetails";
 import { useState } from "react";
 import { Route, Routes } from "react-router";
-import React from 'react';
 
 const App = () => {
   const [mailboxes, setMailboxes] = useState([]);
+
   const addBox = (mailboxData) => {
     const newMailbox = { ...mailboxData, _id: mailboxes.length + 1 };
     setMailboxes([...mailboxes, newMailbox]);

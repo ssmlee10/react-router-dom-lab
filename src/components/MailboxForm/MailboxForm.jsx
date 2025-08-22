@@ -34,7 +34,6 @@ const MailboxForm = ({ addBox }) => {
         <label htmlFor="boxOwner">Enter a Boxholder:</label>
         <input
           type="text"
-          id="boxOwner"
           name="boxOwner"
           value={formData.boxOwner}
           onChange={handleChange}
